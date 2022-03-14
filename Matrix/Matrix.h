@@ -70,10 +70,6 @@ public:
         }
         cout << "]" << endl;
     }
-    T** getMatrix()
-    {
-        return this->data;
-    }
     const int getWidth()
     {
         return this->width;
@@ -119,7 +115,7 @@ public:
         }
         return newMatrix;
     }
-    void operator ++(int) // Прибавление единичнйо мтарицы
+    void operator ++(int) // Прибавление единичной мтарицы
     {
         Matrix<T> newMatrix(this->getWidth(), this->getHeight());
         for (int irow = 0; irow < newMatrix.getHeight(); irow++)
@@ -169,4 +165,31 @@ public:
             }
         }
     }
+protected:
+    this
+};
+template <typename T>
+class EMatrix: Matrix<T>
+{
+private:
+    int size;
+public:
+    EMatrix(int _size) : size(_size) {};
+    void print()
+    {
+        this->get().print();
+    }
+    Matrix<T> get()
+    {
+        Matrix<T> newMatrix(this->size, this->size);
+        for (int row = 0; row < this->size; row++)
+        {
+            for (int col = 0; col < this->size; col++)
+            {
+                newMatrix[row][col] = row == col ? 1 : 0;
+            }
+        }
+        return newMatrix;
+    }
+
 };
